@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Class for support in rendering views. Support layouts and more. To change default layout `Layout` use constructor like this:
+ * new Render('DifferentLayout#template', array('val1'=> 1,...));
+ * 
+ * All vars from second argument are available in layout scope. Also feel free to create own classes based on this one. Like: class JsonRender { ... } class XmlRender { ... } etc.
+ * 
+ * More examples soon...
+ *
+ * @author Rafał Piekarski
+ */
 class Render {
   
   protected $_template;
@@ -45,5 +55,9 @@ class Render {
   
   public function setVar($name, $value) {
     $this->_vars[$name] = $value;
+  }
+  
+  public function getVar($name) {
+    return $this->_vars[$name];
   }
 }

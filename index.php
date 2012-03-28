@@ -6,5 +6,7 @@ $shopCat = new ShopCat($_SERVER, $_SESSION, $_REQUEST, $_POST, $_GET);
 
 $shopCat->dispatchRoute(array(
   '/:int.html' => 'shopPage',
-  '/' => 'index'
+  ':method/:arg?/:arg?/' => ':method',
+  '/' => 'index',
+  
 ));

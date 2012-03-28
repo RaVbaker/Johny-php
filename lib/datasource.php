@@ -1,11 +1,20 @@
 <?php
 
+/**
+ * Basic class for creating any source of data. From SQL DB, API, file, NoSQL, XML... 
+ * 
+ * How to use it? Create own class based on this one. More examples soon.
+ * 
+ * Basic version shows an interface for CRUD hash. 
+ *
+ * @author Rafał Piekarski
+ */
 class DataSource {
   
-  private static $_storage = array();
+  protected static $_storage = array();
   
-  private $_instance = null;
-  private $_lookupIndex = null;
+  protected $_instance = null;
+  protected $_lookupIndex = null;
   
   function _construct($object = array()) {
     $this->_instance = $object;
