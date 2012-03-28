@@ -22,6 +22,13 @@ class App {
     }
   }
   
+  /**
+   * Runs route method based on $routes
+   *
+   * @param array $routes 
+   * @return void
+   * @author Rafał Piekarski
+   */
   public function dispatchRoute($routes) {
     foreach($routes as $route => $method) {
       if ($args = $this->_checkRoute($route)) {
