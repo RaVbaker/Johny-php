@@ -2,9 +2,6 @@
 
 require_once 'lib/render.php';
 
-/**
-* 
-*/
 class App {
   
   protected $_env = array(); 

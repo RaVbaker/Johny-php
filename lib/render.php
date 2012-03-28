@@ -1,8 +1,5 @@
 <?php
 
-/**
-* 
-*/
 class Render {
   
   protected $_template;
