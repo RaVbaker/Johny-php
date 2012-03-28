@@ -20,13 +20,7 @@ class App {
         break;
       }
     }                
-    $this->_callBefore();
-    $renderer = call_user_func_array(array($this, $this->_method), $args);
-    $this->_callAfter();
-    if ($renderer instanceOf Render) {
-      $renderer->printOut();
-      $this->_callAfterRender();
-    }
+    $this->_callMethod($args);
   }
   
   private function _checkRoute($route) {
@@ -44,11 +38,23 @@ class App {
   
   private function _routeAsExpression($route) {
     $route = str_replace('.', '\\.', $route);
+    
     $route = str_replace(':int', '(\d+)', $route);
     $route = str_replace(':string', '([^/.]+)', $route);
     $route = str_replace(':float', '([0-9.]+)', $route);
     $route = str_replace(':catch_all', '(.*)', $route);
     return '#'.$route.'#';
+  }
+  
+  private function _callMethod($args) {
+    $this->_callBefore();
+    $renderer = call_user_func_array(array($this, $this->_method), $args);
+    $this->_callAfter();
+    
+    if ($renderer instanceOf Render) {
+      $renderer->printOut();
+      $this->_callAfterRender();
+    }
   }
   
   /**

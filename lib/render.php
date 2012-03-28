@@ -3,8 +3,12 @@
 class Render {
   
   protected $_template;
-  protected $_vars;
+  protected $_vars = array();
   protected $_layout = 'Layout';
+  
+  protected static $_dir = 'views/';
+  protected static $_extension = '.php';
+  protected static $_layoutTemplateSeparator = '#';
   
   function __construct($what = '', $vars = array()) {
     $this->_setTemplate($what);
@@ -12,18 +16,18 @@ class Render {
   }
   
   private function _setTemplate($what) {
-    if (false !== strpos($what, '#')) {
-      list($this->_layout, $this->_template) = explode('#', $what);
+    if (false !== strpos($what, self::$_layoutTemplateSeparator)) {
+      list($this->_layout, $this->_template) = explode(self::$_layoutTemplateSeparator, $what);
     } else {
       $this->_template = $what;
     }
   }
   
   public function printOut() {
-    if (file_exists($this->_skinFile())) {
-      extract($this->_vars, EXTR_REFS);
-      $_template = $this->_skinFile();
-      $_layout = $this->_skinFile($this->_layout);
+    extract($this->_vars, EXTR_REFS);
+    $_template = $this->_viewFilePath();
+    if (file_exists($_template)) {
+      $_layout = $this->_viewFilePath($this->_layout);
       if (file_exists($_layout)) {
         include $_layout;
       } else {
@@ -32,11 +36,11 @@ class Render {
     }
   }
   
-  private function _skinFile($file = null) {
+  private function _viewFilePath($file = null) {
     if (is_null($file)) {
       $file = $this->_template;
     }
-    return 'skin/'.$file.'.php';
+    return self::$_dir.$file.self::$_extension;
   }
   
   public function setVar($name, $value) {

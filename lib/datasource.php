@@ -48,4 +48,16 @@ class DataSource {
   public function get() {
     return $this->_instance;
   }
+  
+  public static function reset() {
+    self::$_storage = array();
+  }
+  
+  public static function load($newStorage) {
+    self::$_storage = $newStorage;
+  }
+  
+  public static function fetch() {
+    return self::$_storage;
+  }
 }
