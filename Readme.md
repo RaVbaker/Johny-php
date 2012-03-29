@@ -2,7 +2,7 @@
 
 It is easy to use PHP framework. With support for layouts and templates. Without models and multiple controllers but if you need it you can do it with _App_s and _DataSource_s.
 
-Great tool to build simple sites which uses various data sources. 
+Great tool to build simple sites which uses various data sources like APIs, NoSQLs, files, XMLs, RSS and more.
 
 ## More info?
 
