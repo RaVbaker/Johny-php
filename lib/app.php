@@ -15,6 +15,7 @@ class App {
   
   protected $_env = array(); 
   protected $_method = 'index';
+  public $url;
   
   function __construct($server, $session, $request, $post, $get) {
     foreach (array('server', 'session', 'request', 'post', 'get') as $name) {
@@ -44,12 +45,12 @@ class App {
   }
   
   private function _checkRoute($route) {
-    $url = $this->_env['server']['PATH_INFO'];
+    $this->url = $this->_env['server']['PATH_INFO'];
 
     $expression = $this->_routeAsExpression($route);
     $args = array();
     
-    if (preg_match($expression, $url, $args)) {
+    if (preg_match($expression, $this->url, $args)) {
       array_shift($args);
       return $args;
     }

@@ -30,10 +30,10 @@ class Render {
       list($this->_layout, $this->_template) = explode(self::$_layoutTemplateSeparator, $what);
     } else {
       $this->_template = $what;
-    }
+    }                     
   }
   
-  public function printOut() {
+  public function printOut() {     
     extract($this->_vars, EXTR_REFS);
     $_template = $this->_viewFilePath();
     if (file_exists($_template)) {
